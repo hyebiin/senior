@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_home"
+    android:orientation="vertical"
+    tools:context=".HomeFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textSize="40dp"
+        android:fontFamily="@font/marubold"
+        android:textColor="#C38A8B"
+        android:gravity="center"
+        android:text="HOME" />
+
+    <ImageButton
+        android:id="@+id/openBtn"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        android:background="@drawable/lock" />
+
+    <ImageButton
+        android:id="@+id/closeBtn"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:background="@drawable/unlock" />
+
+</RelativeLayout>

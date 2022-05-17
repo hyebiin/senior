@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_user"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    tools:context=".UserFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textSize="40dp"
+        android:textColor="#C38A8B"
+        android:fontFamily="@font/marubold"
+        android:gravity="center"
+        android:text="USER" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/maru"
+        android:textColor="#000000"
+        android:text="사용자 정보 등록" />
+    <Button
+        android:id="@+id/userBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/marubold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#C38A8B"
+        android:theme="@style/AppTheme.ButtonColor"
+        android:text="등록하기" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/maru"
+        android:textColor="#000000"
+        android:text="출입시간 조회" />
+    <Button
+        android:id="@+id/timeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/marubold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#C38A8B"
+        android:theme="@style/AppTheme.ButtonColor"
+        android:text="TIME" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/maru"
+        android:textColor="#000000"
+        android:text="출입사진 조회" />
+    <Button
+        android:id="@+id/albumBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:textColor="#ffffff"
+        android:fontFamily="@font/marubold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#C38A8B"
+        android:theme="@style/AppTheme.ButtonColor"
+        android:text="ALBUM" />
+
+</LinearLayout>
