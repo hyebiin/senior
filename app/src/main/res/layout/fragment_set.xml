@@ -69,29 +69,4 @@
         android:theme="@style/AppTheme.ButtonColor"
         android:text="BLUETHOOTH" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="@font/maru"
-        android:textColor="#000000"
-        android:text="카메라 사용" />
-
-    <ToggleButton
-        android:id="@+id/camTog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="@font/maru"
-        android:background="#C38A8B"
-        android:textColor="#ffffff"/>
-
-
 </LinearLayout>

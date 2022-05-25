@@ -40,20 +40,5 @@ class SetFragment : Fragment() {
             soundPool.play(soundId,1.0f, 1.0f,0,0,1.0f)
         }
 
-        camTog.setOnClickListener {
-            if(camTog.isChecked) {
-                val soundId = soundPool.load(context, R.raw.camera_use,1)
-                Thread.sleep(1000)
-                soundPool.play(soundId,1.0f, 1.0f,0,0,1.0f)
-                Toast.makeText(getActivity(),"카메라 사용", Toast.LENGTH_LONG).show()
-            }
-            else {
-                val soundId = soundPool.load(context, R.raw.camera_not_use,1)
-                Thread.sleep(1000)
-                soundPool.play(soundId,1.0f, 1.0f,0,0,1.0f)
-                Toast.makeText(getActivity(),"카메라 미사용", Toast.LENGTH_LONG).show()
-            }
-
-        }
     }
 }

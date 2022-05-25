@@ -1,11 +1,11 @@
 package com.example.app
 
-import android.content.Intent
+import android.content.Context
 import android.media.Ringtone
 import android.media.RingtoneManager
 import android.media.SoundPool
 import android.net.Uri
-import android.os.Bundle
+import android.os.*
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +18,17 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import java.io.*
+import java.net.Socket
+import android.system.Os.socket
+import android.system.Os.socket
+import android.system.Os.socket
+import android.system.Os.socket
+
+
+
+
+
+
 
 
 class HomeFragment : Fragment() {
@@ -26,6 +37,8 @@ class HomeFragment : Fragment() {
 
     var st_date: String? = null
     val soundPool = SoundPool.Builder().build()
+
+    private val handler = Handler()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,24 +50,16 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val one="home"  //HomeFragment임을 알리기 위해 "home"전달
-        val text=SocketActivity.SocketAsyncTask().execute(one) //소켓통신 시작 -> 서버에서 잠금장치 상태정보 받기
-        Toast.makeText(getActivity(), text.toString(), Toast.LENGTH_LONG).show()    //확인용
-
-
-        //서버에서 받은 text값(잠금장치 상태, 서버에서 임의로 열려있다고 가정했음)에 따라 잠금버튼 이미지 변경
-        if(text!=null) {    //잠금장치가 열려있을 경우
-            openBtn.visibility = INVISIBLE
-            closeBtn.visibility = VISIBLE
-        }
-        else {  //잠금장치가 닫혀있을 경우
-            openBtn.visibility = VISIBLE
-            closeBtn.visibility = INVISIBLE
-        }
+        //소켓통신 시작
+        //잠금장치상태값받기, 이미지버튼변경
+        ClientThread("home").start()
 
         openBtn.setOnClickListener {
+            ClientThread("open").start()
+
             openBtn.visibility = INVISIBLE
             closeBtn.visibility = VISIBLE
+
             val long_now: Long = System.currentTimeMillis()
             val st_now = Date(long_now)
             val st_format = SimpleDateFormat("yyyy-MM-dd kk:mm:ss E", Locale("ko", "kr"))
@@ -67,7 +72,7 @@ class HomeFragment : Fragment() {
 
             if (!file.exists()) {
                 file.createNewFile()
-                Toast.makeText(getActivity(), filePath.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(getActivity(), filePath.toString(), Toast.LENGTH_LONG).show()
             }
 
             //외부 저장소 기존 내용 먼저 불러오기
@@ -101,6 +106,8 @@ class HomeFragment : Fragment() {
         }
 
         closeBtn.setOnClickListener {
+            ClientThread("clos").start()
+
             openBtn.visibility = VISIBLE
             closeBtn.visibility = INVISIBLE
             val long_now: Long = System.currentTimeMillis()
@@ -114,7 +121,7 @@ class HomeFragment : Fragment() {
             val file = File(filePath, "time.txt")
             if (!file.exists()) {
                 file.createNewFile()
-                Toast.makeText(getActivity(), filePath.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(getActivity(), filePath.toString(), Toast.LENGTH_LONG).show()
             }
 
             //외부 저장소 기존 내용 먼저 불러오기
@@ -147,15 +154,78 @@ class HomeFragment : Fragment() {
         }
     }
 
-    //일단 사용안함
-    /*
-    fun isExternalStorageWritable(): Boolean {
-        when {
-            //외부저장장치 상태가 media-mounted면 사용가능
-            Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED -> return true
-            else -> return false
+    inner class ClientThread(var para: String) : Thread() {
+        override fun run() {
+            try {
+                var socket = Socket("192.168.139.128", 7777)    //소켓 연결(우분투IPv4주소, 포트번호)
+
+                if (para === "home") {
+                    var input = socket.getInputStream() //InputStream 생성
+                    var output = socket.getOutputStream()   //OutputStream 생성
+                    output.write(para.toByteArray(Charsets.UTF_8))  //서버에 액티비티명(home) 전달
+                    output.flush()
+
+                    var rb = input.readBytes()
+                    var state=rb.toString(Charsets.UTF_8)
+                    var clos="clos"
+
+                    handler.post {
+                        Toast.makeText(getActivity(), state, Toast.LENGTH_LONG).show()
+                        if (state.contains(clos)) {
+                            openBtn.visibility = VISIBLE
+                            closeBtn.visibility = INVISIBLE
+                        } else {
+                            openBtn.visibility = INVISIBLE
+                            closeBtn.visibility = VISIBLE
+                        }
+                    }
+
+                }
+
+                if (para == "open") {
+                    var input1 = socket.getInputStream() //InputStream 생성
+                    var output1 = socket.getOutputStream()   //OutputStream 생성
+                    output1.write(para.toByteArray(Charsets.UTF_8))
+                    output1.flush()
+
+                    var rb1 = input1.readBytes()
+                    var set=rb1.toString(Charsets.UTF_8)
+
+                    if (set.contains("no")) {
+                        handler.post {
+                            val vibrator =
+                                context!!.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                vibrator.vibrate(
+                                    VibrationEffect.createOneShot(
+                                        1000,
+                                        VibrationEffect.DEFAULT_AMPLITUDE
+                                    )
+                                )
+                                Toast.makeText(getActivity(), set, Toast.LENGTH_LONG).show()
+                            } else {
+                                vibrator.vibrate(1000)
+                            }
+                        }
+                    }
+                    else {
+                        handler.post {
+                            Toast.makeText(getActivity(), "fail", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+
+                if(para.contains("clos")) {
+                    var output2 = socket.getOutputStream()   //OutputStream 생성
+                    output2.write(para.toByteArray(Charsets.UTF_8))
+                    output2.flush()
+                }
+
+                socket.close()  //소켓 종료
+
+            } catch (e: Exception) {
+                e.printStackTrace() //오류발생 시 로그 출력
+            }
         }
     }
-     */
-
 }

@@ -37,7 +37,7 @@
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/maru"
                 android:textSize="20dp"
-                android:text="사용자 이름" />
+                android:text="사용자 이름(*)" />
             <EditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/maru"
                 android:textSize="20dp"
-                android:text="비밀번호" />
+                android:text="비밀번호(*)" />
             <EditText
                 android:id="@+id/userpass"
                 android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/maru"
-                android:text="긴급 연락망" />
+                android:text="긴급 연락망(*1개이상)" />
 
             <EditText
                 android:id="@+id/usertel1"
@@ -116,6 +116,42 @@
                 android:fontFamily="@font/maru"
                 android:inputType="textPersonName"
                 android:hint="phone number3" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/maru"
+                android:textColor="#000000"
+                android:text="카메라 사용 여부" />
+
+            <ToggleButton
+                android:id="@+id/camTog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/maru"
+                android:background="#C38A8B"
+                android:textColor="#ffffff"/>
+
+            <TextView
+                android:id="@+id/photoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/maru"
+                android:textColor="#000000"
+                android:text="사용자 이미지 갖고오기" />
 
             <Button
                 android:id="@+id/user_photoBtn"
