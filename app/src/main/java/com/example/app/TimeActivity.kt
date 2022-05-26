@@ -29,7 +29,7 @@ class TimeActivity : AppCompatActivity() {
 
         date_time.setText(result1)
 
-        println("불러온 내용 : $result1")
+        //println("불러온 내용 : $result1")
         reader1.close()
 
         time_backBtn.setOnClickListener {

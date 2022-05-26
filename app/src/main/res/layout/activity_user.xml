@@ -141,37 +141,6 @@
                 android:background="#C38A8B"
                 android:textColor="#ffffff"/>
 
-            <TextView
-                android:id="@+id/photoText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/maru"
-                android:textColor="#000000"
-                android:text="사용자 이미지 갖고오기" />
-
-            <Button
-                android:id="@+id/user_photoBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:textColor="#ffffff"
-                android:fontFamily="@font/marubold"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="#C38A8B"
-                android:theme="@style/AppTheme.ButtonColor"
-                android:text="사용자사진 갖고오기" />
-
-            <ImageView
-                android:id="@+id/userImg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars" />
-
         </LinearLayout>
     </ScrollView>
 

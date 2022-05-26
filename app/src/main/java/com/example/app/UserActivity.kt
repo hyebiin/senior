@@ -1,11 +1,12 @@
 package com.example.app
 
+import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.ContentValues
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.SoundPool
 import android.net.Uri
 import android.os.*
@@ -14,10 +15,14 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_time.*
 import kotlinx.android.synthetic.main.activity_user.*
+import java.io.BufferedReader
 import java.lang.Exception
-import java.io.ByteArrayOutputStream
-import android.graphics.BitmapFactory
+import java.io.File
+import java.io.FileReader
+import java.io.FileWriter
+
 
 class UserActivity : AppCompatActivity() {
 
@@ -32,7 +37,6 @@ class UserActivity : AppCompatActivity() {
     lateinit var userbt: ToggleButton
     lateinit var user_saveBtn: Button
     lateinit var user_modiBtn: Button
-    lateinit var userimg: ImageView    //이미지뷰
 
     lateinit var name: String
     lateinit var pass: String
@@ -40,19 +44,11 @@ class UserActivity : AppCompatActivity() {
     lateinit var tel2: String
     lateinit var tel3: String
     lateinit var bt:String
-    var img = ByteArray(100)
-
-    lateinit var image: String
-    lateinit var imgUri: String
-
-    lateinit var bitmap: Bitmap
-
-    private val GALLERY = 1
 
     lateinit var cam:String
-
     val soundPool = SoundPool.Builder().build()
 
+    @SuppressLint("WrongThread")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -65,7 +61,6 @@ class UserActivity : AppCompatActivity() {
         userpass = findViewById(R.id.userpass)
         user_saveBtn = findViewById(R.id.user_saveBtn)
         user_modiBtn = findViewById(R.id.user_modiBtn)
-        userimg = findViewById(R.id.userImg)
         userbt = findViewById(R.id.camTog)
 
         myHelper = MainActivity.myDBHelper(this)
@@ -81,8 +76,6 @@ class UserActivity : AppCompatActivity() {
             tel2 = cursor.getString(3)
             tel3 = cursor.getString(4)
             bt = cursor.getString(5)
-            img = cursor.getBlob(6)
-
 
             //가져온 값을 사용자 정보 페이지에 출력
             username.setText(name)
@@ -97,17 +90,12 @@ class UserActivity : AppCompatActivity() {
             usertel3.setText(tel3)
             if(bt=="USE") {
                 userbt.setChecked(true)
+                cam="USE"
             }
             else {
                 userbt.setChecked(false)
+                cam="NOTUSE"
             }
-            val b = BitmapFactory.decodeByteArray(img, 0, img.size)
-            userimg.setImageBitmap(b)
-
-            //데베에 저장되어있는 경로를 비트맵으로 변경하여 이미지뷰에 출력(->문제 : 앱을 껐다가 다시 실행하면 안됨)
-            //val uri = Uri.parse(image)
-            //val bitmap1 = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
-            //userimg.setImageBitmap(bitmap1)
         }
         cursor.close()
         sqlDB.close()
@@ -133,8 +121,7 @@ class UserActivity : AppCompatActivity() {
                             + "', '" + usertel1.text.toString()
                             + "' , '" + usertel2.text.toString()
                             + "' , '" + usertel3.text.toString()
-                            + "' , bt = '" + cam
-                            + "' , '" + img + "' );"
+                            + "' , '" + cam + "' );"
                 )
                 val soundId = soundPool.load(this, R.raw.user_save, 1)
                 Thread.sleep(1000)
@@ -160,7 +147,6 @@ class UserActivity : AppCompatActivity() {
                             + "' , tel2 = '" + usertel2.text.toString()
                             + "' , tel3 = '" + usertel3.text.toString()
                             + "' , bt = '" + cam
-                            + "' , image = '" + img
                             + "' WHERE name ='" + username.text.toString() + "';"
                 )
                 val soundId = soundPool.load(this, R.raw.user_update, 1)
@@ -178,19 +164,10 @@ class UserActivity : AppCompatActivity() {
             val soundId = soundPool.load(this, R.raw.user_init, 1)
             Thread.sleep(1000)
             soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
+            user_saveBtn.visibility = VISIBLE
+            user_modiBtn.visibility = INVISIBLE
             Toast.makeText(applicationContext, "초기화완료", Toast.LENGTH_SHORT).show()
             sqlDB.close()
-        }
-
-        //사진 불러오기
-        user_photoBtn.setOnClickListener {
-            val soundId = soundPool.load(this, R.raw.user_img, 1)
-            Thread.sleep(1000)
-            soundPool.play(soundId, 1.0f, 1.0f, 0, 0, 1.0f)
-
-            val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
-            intent.setType("image/*")
-            startActivityForResult(intent, GALLERY)
         }
 
         //카메라 사용 여부 결정
@@ -213,26 +190,4 @@ class UserActivity : AppCompatActivity() {
 
     }
 
-    //갤러리에서 이미지를 갖고오면 그 경로를 얻는 메소드
-    @Override
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == GALLERY) {
-                var ImnageData: Uri? = data?.data   //이미지 경로 추출
-                imgUri = ImnageData.toString()
-                Toast.makeText(this, imgUri, Toast.LENGTH_SHORT).show()
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData) //이미지경로 비트맵으로 변환
-                    userimg.setImageBitmap(bitmap)  //갤러리에서 선택한 이미지를 이미지뷰에 출력
-                    var stream = ByteArrayOutputStream()
-                    img = stream.toByteArray()
-
-                    Toast.makeText(applicationContext, "success", Toast.LENGTH_SHORT).show()
-                } catch (e: Exception) {
-                    Toast.makeText(applicationContext, "fail", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
 }

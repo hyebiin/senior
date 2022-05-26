@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     //사용자 정보 데베
     class myDBHelper(context: Context) : SQLiteOpenHelper(context, "userTABLE", null, 1) {
         override fun onCreate(p0: SQLiteDatabase?) {
-            p0!!.execSQL("CREATE TABLE userTABLE(name CHAR(30) PRIMARY KEY, pass CHAR(30), tel1 CHAR(30), tel2 CHAR(30), tel3 CHAR(30), bt CHAR(30), image BLOB(50));")
+            p0!!.execSQL("CREATE TABLE userTABLE(name CHAR(30) PRIMARY KEY, pass CHAR(30), tel1 CHAR(30), tel2 CHAR(30), tel3 CHAR(30), bt CHAR(30));")
         }
         override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
             p0!!.execSQL("DROP TABLE IF EXISTS userTABLE")

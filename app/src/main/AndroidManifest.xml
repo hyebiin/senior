@@ -24,7 +24,6 @@
         <activity android:name=".AlbumActivity" android:label="앨범 조회"></activity>
         <activity android:name=".ManualActivity" android:label="메뉴얼 보기"></activity>
 
-
     </application>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -33,7 +32,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
