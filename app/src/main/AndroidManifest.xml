@@ -19,10 +19,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" android:label="DOOR LOCK"></activity>
-        <activity android:name=".TimeActivity" android:label="시간 조회"></activity>
-        <activity android:name=".UserActivity" android:label="사용자 정보 등록"></activity>
-        <activity android:name=".ManualActivity" android:label="메뉴얼 보기"></activity>
+        <activity android:name=".MainActivity" android:label="DOOR LOCK"/>
+        <activity android:name=".TimeActivity" android:label="시간 조회"/>
+        <activity android:name=".UserActivity" android:label="사용자 정보 등록"/>
+        <activity android:name=".ManualActivity" android:label="메뉴얼 보기"/>
 
     </application>
 
