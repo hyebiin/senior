@@ -27,7 +27,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/maru"
-        android:text="1. 핸드폰 블루투스 켜기" />
+        android:text="1. 'USER'에서 사용자 정보 등록" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/maru"
-        android:text="2. 'SETTING'에서 '블루투스 연결' 버튼 클릭" />
+        android:text="2. 'HOME'에서 도어락을 잠금 및 잠금 해제" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,30 +49,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/maru"
-        android:text="3. 'USER'에서 사용자 정보 등록" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="20dp"
-        android:textColor="#000000"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="@font/maru"
-        android:text="4. 'HOME'에서 도어락을 잠금 및 잠금 해제" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="20dp"
-        android:textColor="#000000"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="@font/maru"
-        android:text="5. 'USER'에서 출입시간 및 출입사진 조회" />
+        android:text="3. 'USER'에서 출입시간 조회" />
 
     <LinearLayout
         android:layout_width="match_parent"

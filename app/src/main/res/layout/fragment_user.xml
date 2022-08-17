@@ -65,6 +65,7 @@
         android:background="#C38A8B"
         android:theme="@style/AppTheme.ButtonColor"
         android:text="TIME" />
+    <!--
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
@@ -88,5 +89,6 @@
         android:background="#C38A8B"
         android:theme="@style/AppTheme.ButtonColor"
         android:text="ALBUM" />
+        -->
 
 </LinearLayout>

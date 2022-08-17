@@ -10,11 +10,16 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_user.*
 import android.R
 import android.media.SoundPool
+import android.os.Build
 
 
 class UserFragment : Fragment() {
 
-    val soundPool = SoundPool.Builder().build()
+    val soundPool = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        SoundPool.Builder().build()
+    } else {
+        TODO("VERSION.SDK_INT < LOLLIPOP")
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?
@@ -25,6 +30,7 @@ class UserFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        //'사용자 정보 입력'으로 이동
         userBtn.setOnClickListener {
             val soundId = soundPool.load(context, com.example.app.R.raw.save,1)
             Thread.sleep(1000)
@@ -33,21 +39,13 @@ class UserFragment : Fragment() {
             startActivity(intent)
         }
 
+        //'출입시간 조회'로 이동
         timeBtn.setOnClickListener {
             val soundId = soundPool.load(context, com.example.app.R.raw.time,1)
             Thread.sleep(1000)
             soundPool.play(soundId,1.0f, 1.0f,0,0,1.0f)
             Toast.makeText(activity,"출입시간 조회", Toast.LENGTH_LONG).show()
             val intent = Intent(context,TimeActivity::class.java)
-            startActivity(intent)
-        }
-
-        albumBtn.setOnClickListener {
-            val soundId = soundPool.load(context, com.example.app.R.raw.album,1)
-            Thread.sleep(1000)
-            soundPool.play(soundId,1.0f, 1.0f,0,0,1.0f)
-            Toast.makeText(activity,"출입사진 조회", Toast.LENGTH_LONG).show()
-            val intent = Intent(context,AlbumActivity::class.java)
             startActivity(intent)
         }
     }

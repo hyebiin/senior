@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -81,7 +82,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/maru"
-                android:text="긴급 연락망(*1개이상)" />
+                android:text="긴급 연락망(*)" />
 
             <EditText
                 android:id="@+id/usertel1"
@@ -93,53 +94,64 @@
                 android:fontFamily="@font/maru"
                 android:inputType="textPersonName"
                 android:hint="phone number1" />
+            <!--
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:fontFamily="@font/maru"
+                            android:textColor="#000000"
+                            android:text="카메라 사용 여부" />
 
-            <EditText
-                android:id="@+id/usertel2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/maru"
-                android:inputType="textPersonName"
-                android:hint="phone number2" />
+                        <ToggleButton
+                            android:id="@+id/camTog"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:fontFamily="@font/maru"
+                            android:background="#C38A8B"
+                            android:textColor="#ffffff"/>
 
-            <EditText
-                android:id="@+id/usertel3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:ems="10"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/maru"
-                android:inputType="textPersonName"
-                android:hint="phone number3" />
+                        <TextView
+                            android:id="@+id/qr"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:fontFamily="@font/maru"
+                            android:textColor="#000000"
+                            android:text="QR코드 생성버튼" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/maru"
-                android:textColor="#000000"
-                android:text="카메라 사용 여부" />
+                        <Button
+                            android:id="@+id/qrBtn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:textColor="#ffffff"
+                            android:fontFamily="@font/marubold"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="#C38A8B"
+                            android:theme="@style/AppTheme.ButtonColor"
+                            android:enabled="false"
+                            android:text="생성하기" />
 
-            <ToggleButton
-                android:id="@+id/camTog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/maru"
-                android:background="#C38A8B"
-                android:textColor="#ffffff"/>
+                        <ImageView
+                            android:id="@+id/iv"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:srcCompat="@tools:sample/avatars" />
+            -->
 
         </LinearLayout>
     </ScrollView>

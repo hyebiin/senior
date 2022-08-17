@@ -43,30 +43,4 @@
         android:theme="@style/AppTheme.ButtonColor"
         android:text="MANUAL" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="@font/maru"
-        android:textColor="#000000"
-        android:text="블루투스 연결하기" />
-
-    <Button
-        android:id="@+id/blueBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:textColor="#ffffff"
-        android:fontFamily="@font/marubold"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="20dp"
-        android:background="#C38A8B"
-        android:theme="@style/AppTheme.ButtonColor"
-        android:text="BLUETHOOTH" />
-
 </LinearLayout>

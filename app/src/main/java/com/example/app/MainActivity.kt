@@ -4,16 +4,27 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.media.SoundPool
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var myHelper : myDBHelper
     lateinit var sqlDB : SQLiteDatabase
 
-    val soundPool = SoundPool.Builder().build()
+    val soundPool = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        SoundPool.Builder().build()
+    } else {
+        TODO("VERSION.SDK_INT < LOLLIPOP")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         myHelper = myDBHelper(this)
 
+        //하단 메뉴바 설정
         var bottom_menu = findViewById(R.id.bottom_menu) as BottomNavigationView
-
         bottom_menu.run{ setOnNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.home -> {
@@ -53,10 +64,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //사용자 정보 데베
+    //사용자 정보 DB 설정
     class myDBHelper(context: Context) : SQLiteOpenHelper(context, "userTABLE", null, 1) {
         override fun onCreate(p0: SQLiteDatabase?) {
-            p0!!.execSQL("CREATE TABLE userTABLE(name CHAR(30) PRIMARY KEY, pass CHAR(30), tel1 CHAR(30), tel2 CHAR(30), tel3 CHAR(30), bt CHAR(30));")
+            p0!!.execSQL("CREATE TABLE userTABLE(name CHAR(30) PRIMARY KEY, pass CHAR(30), tel1 CHAR(30));")
         }
         override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
             p0!!.execSQL("DROP TABLE IF EXISTS userTABLE")
