@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
             var response = ""
             val job = GlobalScope.launch {
                 var request = Requester()
-                //response = request.Send("https://hyeonyeong.site/Data/InsertStateLocker?idx=1&state=1")
+                response = request.Send("https://hyeonyeong.site/Data/InsertStateLocker?idx=1&state=1")
                 Log.d(tag, "result : " + response)
             }
 
@@ -122,7 +122,7 @@ class HomeFragment : Fragment() {
             var response = ""
             val job = GlobalScope.launch {
                 var request = Requester()
-                //response = request.Send("https://hyeonyeong.site/Data/InsertStateLocker?idx=1&state=0")
+                response = request.Send("https://hyeonyeong.site/Data/InsertStateLocker?idx=1&state=0")
                 Log.d(tag, "result : " + response)
             }
 
