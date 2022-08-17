@@ -107,7 +107,7 @@ class UserActivity : AppCompatActivity() {
                 var responseUser = ""
                 val job = GlobalScope.launch {
                     var requestUser = Requester()
-                    responseUser = requestUser.User("https://hyeonyeong.site/Data/InsertUser?$user")
+                    //responseUser = requestUser.User("https://hyeonyeong.site/Data/InsertUser?$user")
                     Log.d("결과", "result : " + responseUser)
                 }
 
@@ -148,7 +148,7 @@ class UserActivity : AppCompatActivity() {
                 var responseUser = ""
                 val job = GlobalScope.launch {
                     var requestUser = Requester()
-                    responseUser = requestUser.User("https://hyeonyeong.site/Data/InsertUser?$user")
+                    //responseUser = requestUser.User("https://hyeonyeong.site/Data/InsertUser?$user")
                     Log.d("결과", "result : " + responseUser)
                 }
 
